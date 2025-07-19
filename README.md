@@ -1,114 +1,54 @@
-# 🧪 QA Playwright Challenge – Relke
+# Relke QA Challenge - Automatización con Playwright
 
-¡Bienvenido/a! Este es el desafío técnico para el proceso de selección de **QA Engineer Junior** en Relke 🚀
+## ✅ Instrucciones para ejecutar los tests
 
----
+### Requisitos previos
+- Node.js instalado (v16 o superior recomendado)
+- npm instalado
+- Playwright instalado:
 
-## 🤔 ¿Qué buscamos?
+```bash
+npm install
+npx playwright install
 
-En Relke creemos en el crecimiento desde el aprendizaje. Este desafío no busca medir cuántos años de experiencia tienes, sino **cómo aplicas tus conocimientos actuales, tu motivación por aprender y tu capacidad para enfrentar un flujo real de automatización**.
+⚙️ Tecnologías utilizadas
+Lenguaje: TypeScript
 
-> 🧩 **No es excluyente si tienes menos de 1 año de experiencia.** Si estás recién egresado/a o en tus primeras experiencias laborales, ¡también puedes participar!
+Framework: Playwright
 
-Lo importante es que, con tu formación académica y dedicación, **puedas resolver este reto en un tiempo realista (48 horas)** y mostrar cómo piensas como QA.
+Ejecución: Node.js
 
----
+Reportes: Playwright HTML Reporter
 
-## 🎯 Desafío
+## 🔍 Validaciones realizadas
+Login exitoso con usuario demo.
 
-Tu misión es automatizar con Playwright el flujo de **creación de una Nota de Venta** en nuestro sistema demo:
+Navegación a Ventas > Notas de Venta.
 
-- 🌐 URL: [https://demo.relbase.cl](https://demo.relbase.cl)
-- 👤 Usuario: `qa_junior@relke.cl`
-- 🔐 Contraseña: `Demo123456!`
+Creación de una nueva Nota de Venta, incluyendo:
 
-### Pasos mínimos esperados
+Selección de:
 
-1. Iniciar sesión
-2. Ir a **Ventas > Notas de Venta**
-3. Hacer clic en **Crear nueva nota**
-4. Completar los datos mínimos:
-   - Seleccionar sucursal (Casa matriz)
-   - Seleccionar bodega (Principal)
-   - Seleccionar un cliente (⚠️ puede variar el nombre)
-   - Seleccionar moneda (Pesos)
-   - Agregar al menos un producto
-   - Validar que se calcula un total
-5. Guardar y verificar que aparece en el listado con el total correcto
+Sucursal: Casa matriz
 
----
+Bodega: Principal
 
-## 💡 Reglas y condiciones especiales
+Cliente: primer cliente disponible
 
-- El total debe ser **mayor a $0** y reflejar el precio del producto agregado.
-- Evita usar esperas estáticas (`waitForTimeout`). Usa selectores confiables y `await expect(...)`.
-- Puedes usar Page Object Model si lo prefieres, pero no es obligatorio.
+Moneda: Pesos
 
----
+Agregado de al menos un producto.
 
-## 📤 ¿Cómo entregar tu prueba en GitHub?
+Validación de que el total se calcula y es mayor a 0.
 
-Como el repositorio original de Relke en Bitbucket es público pero de solo lectura, te pedimos que:
+Guardar la Nota de Venta.
 
-1. Clones este repo:
-   ```bash
-   git clone https://bitbucket.org/relke/relke-qa-challenge.git
-   cd relke-qa-challenge
-   ```
 
-2. Crees un nuevo repositorio en **tu cuenta personal de GitHub** (puede ser público o privado).
+⚠️ Desafíos enfrentados
+Interacción con dropdowns no estándar: algunos select como Sucursal, Bodega, Cliente, y Moneda no son HTML <select>. Utilicé interacciones con getByRole y localizadores robustos.
 
-3. Cambies el origen remoto en tu entorno local:
-   ```bash
-   git remote remove origin
-   git remote add origin https://github.com/tu_usuario/relke-qa-respuesta.git
-   git push -u origin main
-   ```
-4. Agrega tus pruebas automatizadas dentro de la carpeta `tests/`
+Ambiente demo dinámico: el cliente, productos y totales pueden cambiar por el entorno compartido. El test es dinámico para siempre seleccionar el primer cliente y primer producto disponible.
 
-5. Crea un `README` dentro de tu repositorio explicando:
-   - Cómo ejecutar tu test
-   - Qué validaciones hiciste
-   - Qué desafíos tuviste o decisiones tomaste
+Sin API pública: no fue posible automatizar la creación de datos por API, lo que obliga a trabajar con datos UI disponibles.
 
-6. Haz commit y push 
 
-7. Comparte el link del repositorio (y acceso si es privado) por mensaje de Get on board de la postulación
-
-> Si no tienes cuenta en GitHub, puedes crear una gratuita en https://github.com
-
----
-
-## 📽️ Opcional: muestra tu forma de trabajar
-
-Si quieres destacarte, puedes grabar un video (máx 10 min) mostrando cómo trabajaste el desafío: tus pasos, pruebas, validaciones o errores encontrados.
-
----
-
-## 🧩 Bonus (opcional)
-
-Puedes agregar validaciones extra como:
-
-- Prueba negativa: ¿qué pasa si no agrego productos?
-- Validación de error de campo requerido
-- Automatización de logout o expiración de sesión
-
----
-
-## ⏱️ Tiempo estimado
-
-Tienes **48 horas** desde que recibes esta pauta.
-
----
-
-## 🧠 Consejos
-
-- Usa `npx playwright codegen` si necesitas inspiración, pero asegúrate de entender y limpiar el código generado.
-- Lee los selectores con cuidado. A veces un texto cambia según el estado.
-- Escribe como si tu test fuera a mantenerse en producción.
-- No estamos buscando perfección, sino **compromiso, criterio y capacidad de automatizar flujos funcionales reales**.
-
----
-
-¡Mucho éxito! 💥  
-Relke QA Team
