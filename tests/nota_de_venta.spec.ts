@@ -41,8 +41,5 @@ test('Crear Nota de Venta con datos mínimos en relBase', async ({ page }) => {
   const netoText = await page.locator('#sales_note_e_document_products_attributes_0_neto').innerText();
   
   await page.getByRole('button', { name: ' Enviar' }).click();
-
-  await page.waitForTimeout(10000); // espera 15 segundos
-
   
 });
